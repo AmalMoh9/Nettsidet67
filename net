@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beredskap</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+}
+
+header {
+    background-color: #1f2a36;
+    color: white;
+    padding: 15px 30px;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    padding: 40px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+h1, h2 {
+    color: #1f2a36;
+}
+
+.footer {
+    background: #1f2a36;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>Beredskapssystem</h1>
+    <nav>
+        <a href="#forside">Forside</a>
+        <a href="#kunnskap">Kunnskapsbase</a>
+        <a href="#kurs">Kurs</a>
+        <a href="#lms">LMS</a>
+    </nav>
+</header>
+
+<div class="container">
+
+<section id="forside" class="card">
+    <h2>Forside</h2>
+    <p>
+        Denne nettsiden gir oversikt over beredskap, sikkerhet og opplæring.
+        Målet er å gjøre informasjon lett tilgjengelig for alle brukere,
+        uavhengig av erfaring.
+    </p>
+</section>
+
+<section id="kunnskap" class="card">
+    <h2>Kunnskapsbase</h2>
+    <ul>
+        <li>Hva er beredskap</li>
+        <li>Hvordan håndtere kriser</li>
+        <li>Varsling og nødprosedyrer</li>
+        <li>Risikovurdering</li>
+    </ul>
+</section>
+
+<section id="kurs" class="card">
+    <h2>Kursoversikt</h2>
+    <ul>
+        <li>Grunnkurs i beredskap</li>
+        <li>Håndtering av krisesituasjoner</li>
+        <li>Førstehjelp</li>
+        <li>Øvelser og simulering</li>
+    </ul>
+</section>
+
+<section id="lms" class="card">
+    <h2>LMS (Læringsplattform)</h2>
+    <p>
+        Her får brukere tilgang til kurs, progresjon og tester.
+    </p>
+    <ul>
+        <li>Mine kurs</li>
+        <li>Tester</li>
+        <li>Resultater</li>
+    </ul>
+</section>
+
+</div>
+
+<div class="footer">
+    <p>Beredskapssystem © 2026</p>
+</div>
+
+</body>
+</html>
