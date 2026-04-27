@@ -3,14 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beredskap</title>
+<title>Beredskapssystem</title>
+
 <style>
-body { font-family: Arial; margin:0; background:#f4f6f8; }
-header { background:#1f2a36; color:white; padding:20px; }
-nav a { color:white; margin-right:15px; text-decoration:none; }
-.container { padding:40px; }
-.card { background:white; padding:20px; margin-bottom:20px; border-radius:8px; }
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f4f6f8;
+}
+
+header {
+    background:#1f2a36;
+    color:white;
+    padding:15px 30px;
+}
+
+nav {
+    display:flex;
+    gap:20px;
+}
+
+nav a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.container {
+    padding:40px;
+}
+
+.card {
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:8px;
+}
+
+.hidden { display:none; }
+
+button {
+    padding:10px 15px;
+    background:#1f2a36;
+    color:white;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+input {
+    padding:10px;
+    width:100%;
+    margin-bottom:10px;
+}
+
+.progress {
+    background:#ddd;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.progress-bar {
+    height:20px;
+    background:green;
+    width:0%;
+}
 </style>
+
 </head>
 
 <body>
@@ -18,36 +78,109 @@ nav a { color:white; margin-right:15px; text-decoration:none; }
 <header>
 <h1>Beredskapssystem</h1>
 <nav>
-<a href="#">Forside</a>
-<a href="#">Kunnskap</a>
-<a href="#">Kurs</a>
-<a href="#">LMS</a>
+<a onclick="showPage('forside')">Forside</a>
+<a onclick="showPage('kunnskap')">Kunnskap</a>
+<a onclick="showPage('kurs')">Kurs</a>
+<a onclick="showPage('lms')">LMS</a>
 </nav>
 </header>
 
 <div class="container">
 
-<div class="card">
+<!-- FORSIDE -->
+<div id="forside" class="page card">
 <h2>Forside</h2>
-<p>Oversikt over beredskap og krisehåndtering.</p>
+<p>
+Dette systemet gir oversikt over beredskap, kurs og opplæring.
+Designet for rask tilgang til kritisk informasjon.
+</p>
 </div>
 
-<div class="card">
+<!-- KUNNSKAP -->
+<div id="kunnskap" class="page card hidden">
 <h2>Kunnskapsbase</h2>
-<p>Informasjon om sikkerhet og prosedyrer.</p>
+
+<input type="text" id="search" placeholder="Søk..." onkeyup="searchContent()">
+
+<ul id="knowledgeList">
+<li>Hva er beredskap</li>
+<li>Hvordan håndtere kriser</li>
+<li>Varslingsrutiner</li>
+<li>Risikovurdering</li>
+<li>Evakueringsplan</li>
+</ul>
 </div>
 
-<div class="card">
-<h2>Kurs</h2>
-<p>Liste over kurs og opplæring.</p>
+<!-- KURS -->
+<div id="kurs" class="page card hidden">
+<h2>Kursoversikt</h2>
+
+<button onclick="filterCourses('alle')">Alle</button>
+<button onclick="filterCourses('grunn')">Grunnkurs</button>
+<button onclick="filterCourses('avansert')">Avansert</button>
+
+<ul id="courseList">
+<li data-type="grunn">Grunnkurs i beredskap</li>
+<li data-type="grunn">Førstehjelp</li>
+<li data-type="avansert">Kriseledelse</li>
+<li data-type="avansert">Simulering</li>
+</ul>
 </div>
 
-<div class="card">
+<!-- LMS -->
+<div id="lms" class="page card hidden">
 <h2>LMS</h2>
-<p>Tilgang til læring og tester.</p>
+
+<p>Fullfør kurs for å øke progresjon:</p>
+
+<button onclick="completeCourse()">Fullfør kurs</button>
+
+<div class="progress">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+<p id="progressText">0% fullført</p>
 </div>
 
 </div>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+    document.getElementById(pageId).classList.remove('hidden');
+}
+
+function searchContent() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let items = document.querySelectorAll("#knowledgeList li");
+
+    items.forEach(item => {
+        item.style.display = item.textContent.toLowerCase().includes(input) ? "" : "none";
+    });
+}
+
+function filterCourses(type) {
+    let items = document.querySelectorAll("#courseList li");
+
+    items.forEach(item => {
+        if(type === 'alle') {
+            item.style.display = "";
+        } else {
+            item.style.display = item.dataset.type === type ? "" : "none";
+        }
+    });
+}
+
+let progress = 0;
+
+function completeCourse() {
+    if(progress < 100) {
+        progress += 20;
+        document.getElementById("progressBar").style.width = progress + "%";
+        document.getElementById("progressText").innerText = progress + "% fullført";
+    }
+}
+</script>
 
 </body>
 </html>
